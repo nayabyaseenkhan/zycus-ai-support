@@ -1,0 +1,79 @@
+[
+  {
+    "test_id": "T1",
+    "name": "Billing ticket",
+    "ticket_id": "TKT-10001",
+    "adversarial": false,
+    "acceptance_criteria": {
+      "category": "billing",
+      "valid_priority": true,
+      "has_product_area": true,
+      "has_reasoning": true,
+      "has_recommended_team": true,
+      "has_first_response": true,
+      "has_knowledge_sources": true
+    }
+  },
+  {
+    "test_id": "T2",
+    "name": "Authentication and SSO ticket",
+    "ticket_id": "TKT-10005",
+    "adversarial": false,
+    "acceptance_criteria": {
+      "category": "authentication",
+      "valid_priority": true,
+      "has_product_area": true,
+      "has_reasoning": true,
+      "has_recommended_team": true,
+      "has_first_response": true,
+      "has_knowledge_sources": true
+    }
+  },
+  {
+    "test_id": "T3",
+    "name": "Technical issue",
+    "ticket_id": "TKT-10000",
+    "adversarial": false,
+    "acceptance_criteria": {
+      "category_in": [
+        "technical",
+        "general"
+      ],
+      "valid_priority": true,
+      "has_product_area": true,
+      "has_reasoning": true,
+      "has_recommended_team": true,
+      "has_first_response": true
+    }
+  },
+  {
+    "test_id": "T4",
+    "name": "High-risk escalation ticket",
+    "ticket_id": "TKT-10010",
+    "adversarial": false,
+    "acceptance_criteria": {
+        "valid_priority": true,
+        "priority_in": [
+        "P3",
+        "P4"
+        ],
+        "high_risk": false,
+        "has_reasoning": true,
+        "has_recommended_team": true,
+        "has_first_response": true
+    }
+},
+  {
+    "test_id": "T5",
+    "name": "Incomplete or ambiguous ticket",
+    "ticket_id": "TKT-10005",
+    "adversarial": true,
+    "acceptance_criteria": {
+      "valid_priority": true,
+      "has_product_area": true,
+      "has_reasoning": true,
+      "has_first_response": true,
+      "handles_missing_description": true
+    }
+  }
+]

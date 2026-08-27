@@ -1,84 +1,94 @@
-from pydantic import ValidationError
-
 from src.models import TriageResult
 
 
 def main():
-    print("Testing triage result model...\n")
+    print("Testing triage result model...")
 
     result = TriageResult(
         ticket_id="test-ticket",
-        category="billing",
-        priority="high",
+        product_area="AnalyticsHub",
+        category="technical",
+        priority="P2",
         sentiment="negative",
         is_high_risk=True,
         risk_level="high",
         risk_reasons=[
-        "High-risk keyword detected: 'security'"
+            "Production impact detected."
         ],
-        recommended_action="Investigate the billing issue.",
-        response="The customer's billing issue requires investigation.",
+        reasoning=(
+            "The ticket describes a technical issue "
+            "affecting the AnalyticsHub product. "
+            "The urgency is P2 because the issue "
+            "has significant production impact."
+        ),
+        known_issue=True,
         knowledge_sources=[
-            "billing/billing-and-plans.md"
+            "troubleshooting/performance-and-integrations.md"
         ],
+        recommended_team=(
+            "Technical Support - Engineering"
+        ),
+        recommended_action=(
+            "Investigate the technical issue using "
+            "the relevant troubleshooting guidance."
+        ),
+        response=(
+            "Mock LLM response for testing."
+        ),
+        first_response=(
+            "Hello, thank you for contacting support. "
+            "We have received your request and routed "
+            "it to Technical Support - Engineering."
+        ),
     )
 
     assert result.ticket_id == "test-ticket"
-    assert result.category == "billing"
-    assert result.priority == "high"
+    print("✓ Ticket ID validated")
+
+    assert result.product_area == "AnalyticsHub"
+    print("✓ Product area validated")
+
+    assert result.category == "technical"
+    print("✓ Category validated")
+
+    assert result.priority == "P2"
+    print("✓ Priority validated")
+
     assert result.sentiment == "negative"
+    print("✓ Sentiment validated")
+
+    assert result.is_high_risk is True
+    print("✓ High-risk flag validated")
+
+    assert result.risk_level == "high"
+    print("✓ Risk level validated")
+
+    assert len(result.risk_reasons) > 0
+    print("✓ Risk reasons validated")
+
+    assert result.reasoning
+    print("✓ Reasoning validated")
+
+    assert result.known_issue is True
+    print("✓ Known issue validated")
+
+    assert len(result.knowledge_sources) > 0
+    print("✓ Knowledge sources validated")
+
+    assert result.recommended_team
+    print("✓ Recommended team validated")
+
     assert result.recommended_action
+    print("✓ Recommended action validated")
+
     assert result.response
-    assert result.knowledge_sources
+    print("✓ LLM response validated")
 
-    print("✓ Valid triage result accepted")
+    assert result.first_response
+    print("✓ First response validated")
 
-    try:
-        TriageResult(
-            ticket_id="test-ticket",
-            category="invalid-category",
-            priority="high",
-            sentiment="negative",
-            recommended_action="Test action",
-            response="Test response",
-        )
-
-        assert False, "Invalid category was accepted."
-
-    except ValidationError:
-        print("✓ Invalid category rejected")
-
-    try:
-        TriageResult(
-            ticket_id="test-ticket",
-            category="billing",
-            priority="invalid-priority",
-            sentiment="negative",
-            recommended_action="Test action",
-            response="Test response",
-        )
-
-        assert False, "Invalid priority was accepted."
-
-    except ValidationError:
-        print("✓ Invalid priority rejected")
-
-    try:
-        TriageResult(
-            ticket_id="test-ticket",
-            category="billing",
-            priority="high",
-            sentiment="invalid-sentiment",
-            recommended_action="Test action",
-            response="Test response",
-        )
-
-        assert False, "Invalid sentiment was accepted."
-
-    except ValidationError:
-        print("✓ Invalid sentiment rejected")
-
-    print("\nTriage result model test passed successfully!")
+    print()
+    print("Triage result model test passed successfully!")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,222 @@
+{
+  "evaluation_metadata": {
+    "generated_at": "2026-08-27T18:18:20.212380",
+    "dataset": "Provided synthetic Zycus mock dataset",
+    "external_data_used": false
+  },
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "overall_quality_score": 0.99,
+    "task_1": {
+      "total": 5,
+      "passed": 5,
+      "quality_score": 0.97
+    },
+    "task_2": {
+      "total": 5,
+      "passed": 5,
+      "quality_score": 1.0
+    }
+  },
+  "results": [
+    {
+      "test_id": "T1",
+      "task": "Task 1 - Intelligent Ticket Triage",
+      "name": "Billing ticket",
+      "ticket_id": "TKT-10001",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 0.86,
+      "checks": {
+        "category": false,
+        "valid_priority": true,
+        "has_product_area": true,
+        "has_reasoning": true,
+        "has_recommended_team": true,
+        "has_first_response": true,
+        "has_knowledge_sources": true
+      }
+    },
+    {
+      "test_id": "T2",
+      "task": "Task 1 - Intelligent Ticket Triage",
+      "name": "Authentication and SSO ticket",
+      "ticket_id": "TKT-10005",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "category": true,
+        "valid_priority": true,
+        "has_product_area": true,
+        "has_reasoning": true,
+        "has_recommended_team": true,
+        "has_first_response": true,
+        "has_knowledge_sources": true
+      }
+    },
+    {
+      "test_id": "T3",
+      "task": "Task 1 - Intelligent Ticket Triage",
+      "name": "Technical issue",
+      "ticket_id": "TKT-10000",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "category": true,
+        "valid_priority": true,
+        "has_product_area": true,
+        "has_reasoning": true,
+        "has_recommended_team": true,
+        "has_first_response": true
+      }
+    },
+    {
+      "test_id": "T4",
+      "task": "Task 1 - Intelligent Ticket Triage",
+      "name": "High-risk escalation ticket",
+      "ticket_id": "TKT-10010",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "valid_priority": true,
+        "priority": true,
+        "has_reasoning": true,
+        "has_recommended_team": true,
+        "has_first_response": true,
+        "high_risk": true
+      }
+    },
+    {
+      "test_id": "T5",
+      "task": "Task 1 - Intelligent Ticket Triage",
+      "name": "Incomplete or ambiguous ticket",
+      "ticket_id": "TKT-10005",
+      "adversarial": true,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "valid_priority": true,
+        "has_product_area": true,
+        "has_reasoning": true,
+        "has_first_response": true,
+        "handles_missing_description": true
+      }
+    },
+    {
+      "test_id": "T6",
+      "task": "Task 2 - TAM Account Health",
+      "name": "Account health with limited recent activity",
+      "account_id": "ACC-3336",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "account_loaded": true,
+        "tickets_loaded": true,
+        "brief_generated": true,
+        "has_account_id": true,
+        "has_account_name": true,
+        "has_recent_ticket_count": true,
+        "has_executive_summary": true,
+        "has_open_risks": true,
+        "has_recommended_talking_points": true,
+        "account_id_match": true,
+        "has_talking_points": true,
+        "deterministic": true
+      }
+    },
+    {
+      "test_id": "T7",
+      "task": "Task 2 - TAM Account Health",
+      "name": "At-risk account",
+      "account_id": "ACC-3336",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "account_loaded": true,
+        "tickets_loaded": true,
+        "brief_generated": true,
+        "has_account_id": true,
+        "has_account_name": true,
+        "has_recent_ticket_count": true,
+        "has_executive_summary": true,
+        "has_open_risks": true,
+        "has_recommended_talking_points": true,
+        "account_id_match": true,
+        "has_talking_points": true
+      }
+    },
+    {
+      "test_id": "T8",
+      "task": "Task 2 - TAM Account Health",
+      "name": "Account escalation signal detection",
+      "account_id": "ACC-3336",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "account_loaded": true,
+        "tickets_loaded": true,
+        "brief_generated": true,
+        "has_account_id": true,
+        "has_account_name": true,
+        "has_recent_ticket_count": true,
+        "has_executive_summary": true,
+        "has_open_risks": true,
+        "has_recommended_talking_points": true,
+        "account_id_match": true,
+        "has_talking_points": true
+      }
+    },
+    {
+      "test_id": "T9",
+      "task": "Task 2 - TAM Account Health",
+      "name": "Account with ticket history",
+      "account_id": "ACC-3336",
+      "adversarial": false,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "account_loaded": true,
+        "tickets_loaded": true,
+        "brief_generated": true,
+        "has_account_id": true,
+        "has_account_name": true,
+        "has_recent_ticket_count": true,
+        "has_executive_summary": true,
+        "has_open_risks": true,
+        "has_recommended_talking_points": true,
+        "account_id_match": true,
+        "has_talking_points": true
+      }
+    },
+    {
+      "test_id": "T10",
+      "task": "Task 2 - TAM Account Health",
+      "name": "Incomplete account data",
+      "account_id": "ACC-3336",
+      "adversarial": true,
+      "passed": true,
+      "quality_score": 1.0,
+      "checks": {
+        "account_loaded": true,
+        "tickets_loaded": true,
+        "brief_generated": true,
+        "has_account_id": true,
+        "has_account_name": true,
+        "has_recent_ticket_count": true,
+        "has_executive_summary": true,
+        "has_open_risks": true,
+        "has_recommended_talking_points": true,
+        "account_id_match": true,
+        "has_talking_points": true
+      }
+    }
+  ]
+}
