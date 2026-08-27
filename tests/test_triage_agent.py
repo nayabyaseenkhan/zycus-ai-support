@@ -1,7 +1,7 @@
 from src.triage.agent import TriageAgent
 
 
-def main():
+def test_triage_agent():
     print("Testing triage agent...\n")
 
     agent = TriageAgent()
@@ -25,10 +25,17 @@ def main():
     else:
         print("✓ Missing account handled gracefully")
 
+    assert isinstance(
+        context["account_tickets"],
+        list,
+    )
+
     print(
         f"✓ Related tickets: "
         f"{len(context['account_tickets'])}"
     )
+
+    assert len(context["knowledge"]) <= 3
 
     print(
         f"✓ Knowledge results: "
@@ -36,13 +43,13 @@ def main():
     )
 
     for result in context["knowledge"]:
+        assert result["source"]
+        assert result["content"]
+        assert "score" in result
+
         print(
             f"  → {result['source']} "
             f"(score={result['score']:.3f})"
         )
 
     print("\nTriage agent test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

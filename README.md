@@ -990,47 +990,42 @@ This ensures that the application handles both normal and edge-case scenarios.
 
 ## 33. Running the Tests
 
-First activate the virtual environment.
+Activate the virtual environment.
 
 On Windows:
 
+```powershell
 .venv\Scripts\Activate.ps1
+```
 
 Install the required packages:
 
+```powershell
 pip install -r requirements.txt
+```
 
-Individual tests can then be executed using:
+Run the complete test suite:
 
-python -m tests.test_data_loader
+```powershell
+python -m pytest tests -v
+```
 
-python -m tests.test_end_to_end
+The project contains unit, integration, and end-to-end tests covering:
 
-python -m tests.test_kb_chunker
+* Data loading
+* Account services
+* Knowledge-base loading and retrieval
+* Risk detection
+* Ticket summarization
+* Prompt generation
+* LLM client behavior
+* Ticket triage
+* TAM account health
+* Missing-account handling
+* End-to-end workflows
 
-python -m tests.test_kb_loader
+The current test suite contains 15 test files and all tests pass successfully.
 
-python -m tests.test_llm_client
-
-python -m tests.test_missing_account
-
-python -m tests.test_models
-
-python -m tests.test_prompts
-
-python -m tests.test_retriever
-
-python -m tests.test_risk_detector
-
-python -m tests.test_summarizer
-
-python -m tests.test_triage_agent
-
-python -m tests.test_triage_flow
-
-All tests are designed to provide clear success or failure output.
-
----
 
 ## 34. Running the Application
 
@@ -1090,39 +1085,42 @@ Update the .env file with the appropriate configuration if a production LLM is b
 
 The main project dependencies are:
 
-pandas
-
-numpy
-
-pydantic
-
-python-dotenv
-
-scikit-learn
-
-streamlit
+* pandas
+* numpy
+* pydantic
+* python-dotenv
+* scikit-learn
+* streamlit
+* openai
+* pytest
 
 The dependency list is maintained in:
 
+
 requirements.txt
 
----
+
+The OpenAI client is optional for the development workflow. The core triage and evaluation pipeline can operate using the project's deterministic/mock behavior without requiring a paid external LLM API.
 
 ## 38. Security Considerations
 
-The project follows basic security practices.
+The project follows basic security practices:
 
-API credentials are stored in environment variables.
+* API credentials are stored in environment variables.
+* The local `.env` file is excluded from Git.
+* `.env.example` contains placeholders only.
+* No real API keys or credentials should be committed to the repository.
+* The provided synthetic dataset is used exclusively for this assessment.
+* Production deployments should minimize sensitive customer data sent to external LLM APIs and apply PII redaction where required.
 
-The local .env file is excluded from Git.
+Before submitting the repository, verify that the real `.env` file is not tracked:
 
-The .env.example file contains placeholders instead of real credentials.
 
-The application does not require API credentials when operating in development/mock mode.
+git ls-files .env
 
-Production deployment should use secure secret management rather than storing credentials directly in source code.
 
----
+This command should return no output.
+
 
 ## 39. Data Quality Considerations
 

@@ -1,10 +1,13 @@
 from src.utils.kb_loader import load_knowledge_base
 
 
-def main():
+def test_kb_loader():
     documents = load_knowledge_base()
 
-    print(f"Knowledge-base documents loaded: {len(documents)}")
+    print(
+        f"Knowledge-base documents loaded: "
+        f"{len(documents)}"
+    )
 
     assert len(documents) == 9
 
@@ -18,8 +21,6 @@ def main():
             f"({document['category']})"
         )
 
-    print("\nKnowledge-base loader test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()
+    print(
+        "\nKnowledge-base loader test passed successfully!"
+    )

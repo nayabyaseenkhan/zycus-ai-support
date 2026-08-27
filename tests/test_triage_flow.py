@@ -2,7 +2,7 @@ from src.triage.agent import TriageAgent
 from src.models import TriageResult
 
 
-def main():
+def test_triage_flow():
     print("Testing complete triage flow...\n")
 
     agent = TriageAgent()
@@ -31,7 +31,10 @@ def main():
     print(f"  Category: {result.category}")
     print(f"  Priority: {result.priority}")
     print(f"  Sentiment: {result.sentiment}")
-    print(f"  Action: {result.recommended_action}")
+    print(
+        f"  Action: "
+        f"{result.recommended_action}"
+    )
 
     print("\nKnowledge sources:")
 
@@ -41,8 +44,6 @@ def main():
     print("\nLLM Response:")
     print(result.response)
 
-    print("\nComplete triage flow test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()
+    print(
+        "\nComplete triage flow test passed successfully!"
+    )

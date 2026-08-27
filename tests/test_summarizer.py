@@ -1,7 +1,7 @@
 from src.tam.summarizer import TicketSummarizer
 
 
-def main():
+def test_summarizer():
     print("Testing ticket summarizer...\n")
 
     summarizer = TicketSummarizer()
@@ -29,7 +29,9 @@ def main():
         },
     ]
 
-    history_summary = summarizer.summarize_history(history)
+    history_summary = summarizer.summarize_history(
+        history
+    )
 
     assert history_summary
     assert "Previous login issue" in history_summary
@@ -49,8 +51,6 @@ def main():
 
     print("✓ Customer context summarized")
 
-    print("\nTicket summarizer test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()
+    print(
+        "\nTicket summarizer test passed successfully!"
+    )

@@ -2,7 +2,7 @@ from src.tam.account_service import AccountService
 from src.tam.summarizer import TicketSummarizer
 
 
-def main():
+def test_account_health():
     print("Testing TAM account health summarizer...")
 
     account_service = AccountService()
@@ -10,8 +10,7 @@ def main():
 
     accounts = account_service.accounts
 
-    if not accounts:
-        raise AssertionError("No accounts available.")
+    assert accounts, "No accounts available."
 
     account_id = accounts[0]["account_id"]
 
@@ -19,25 +18,18 @@ def main():
 
     account = account_service.get_account(account_id)
 
-    if account is None:
-        raise AssertionError(
-            "Account could not be loaded."
-        )
+    assert account is not None, "Account could not be loaded."
 
     print("✓ Account loaded")
 
-    tickets = account_service.get_account_tickets(
-        account_id
-    )
+    tickets = account_service.get_account_tickets(account_id)
 
     print(
         f"✓ Account tickets loaded: {len(tickets)}"
     )
 
-    recent_tickets = (
-        summarizer.get_last_90_days_tickets(
-            tickets
-        )
+    recent_tickets = summarizer.get_last_90_days_tickets(
+        tickets
     )
 
     print(
@@ -67,65 +59,42 @@ def main():
     ]
 
     for section in required_sections:
-        if section not in brief:
-            raise AssertionError(
-                f"Missing section: {section}"
-            )
+        assert section in brief, f"Missing section: {section}"
+        print(f"✓ {section} generated")
 
-        print(
-            f"✓ {section} generated"
-        )
+    assert brief["executive_summary"], (
+        "Executive summary is empty."
+    )
 
-    if not brief["executive_summary"]:
-        raise AssertionError(
-            "Executive summary is empty."
-        )
+    assert isinstance(brief["open_risks"], list), (
+        "Open risks must be a list."
+    )
 
-    if not isinstance(
-        brief["open_risks"],
-        list,
-    ):
-        raise AssertionError(
-            "Open risks must be a list."
-        )
-
-    if not isinstance(
+    assert isinstance(
         brief["recommended_talking_points"],
         list,
-    ):
-        raise AssertionError(
-            "Talking points must be a list."
-        )
+    ), "Talking points must be a list."
 
     # Verify deterministic output.
-    brief_again = (
-        summarizer.generate_account_brief(
-            account_id=account_id,
-            account=account,
-            tickets=tickets,
-        )
+    brief_again = summarizer.generate_account_brief(
+        account_id=account_id,
+        account=account,
+        tickets=tickets,
     )
 
-    if brief != brief_again:
-        raise AssertionError(
-            "Account brief is not deterministic."
-        )
-
-    print(
-        "✓ Deterministic output verified"
+    assert brief == brief_again, (
+        "Account brief is not deterministic."
     )
+
+    print("✓ Deterministic output verified")
 
     # Verify direct quotes for risk flags.
     for flag in brief["risk_flags"]:
-        if not flag.get("quote"):
-            raise AssertionError(
-                "Risk flag does not contain "
-                "a direct ticket quote."
-            )
+        assert flag.get("quote"), (
+            "Risk flag does not contain a direct ticket quote."
+        )
 
-    print(
-        "✓ Risk flags contain direct ticket quotes"
-    )
+    print("✓ Risk flags contain direct ticket quotes")
 
     print()
     print("Executive Summary:")
@@ -135,39 +104,21 @@ def main():
     print("Open Risks & Flagged Issues:")
 
     for risk in brief["open_risks"]:
-        print(
-            f"- {risk['type']}"
-        )
+        print(f"- {risk['type']}")
 
         if risk.get("ticket_id"):
-            print(
-                f"  Ticket: {risk['ticket_id']}"
-            )
+            print(f"  Ticket: {risk['ticket_id']}")
 
-        print(
-            f"  Reason: {risk['reason']}"
-        )
+        print(f"  Reason: {risk['reason']}")
 
         if risk.get("quote"):
-            print(
-                f"  Quote: \"{risk['quote']}\""
-            )
+            print(f'  Quote: "{risk["quote"]}"')
 
     print()
     print("Recommended Talking Points:")
 
-    for point in brief[
-        "recommended_talking_points"
-    ]:
-        print(
-            f"- {point}"
-        )
+    for point in brief["recommended_talking_points"]:
+        print(f"- {point}")
 
     print()
-    print(
-        "TAM account health test passed successfully!"
-    )
-
-
-if __name__ == "__main__":
-    main()
+    print("TAM account health test passed successfully!")

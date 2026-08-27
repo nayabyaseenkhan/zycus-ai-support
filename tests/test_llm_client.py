@@ -1,7 +1,7 @@
 from src.utils.llm_client import LLMClient
 
 
-def main():
+def test_llm_client():
     print("Testing LLM client...\n")
 
     client = LLMClient()
@@ -16,11 +16,7 @@ def main():
 
     print("✓ LLM client initialized")
     print("✓ Prompt accepted")
-    print("✓ Mock response generated")
+    print("✓ LLM response generated")
     print(f"\nResponse:\n{response}")
 
     print("\nLLM client test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

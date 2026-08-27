@@ -1,7 +1,7 @@
 from src.utils.kb_loader import load_knowledge_base_chunks
 
 
-def main():
+def test_kb_chunking():
     print("Testing knowledge-base chunking...\n")
 
     chunks = load_knowledge_base_chunks()
@@ -23,8 +23,6 @@ def main():
             f"| chunk {chunk['chunk_index']}"
         )
 
-    print("\nKnowledge-base chunking test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()
+    print(
+        "\nKnowledge-base chunking test passed successfully!"
+    )

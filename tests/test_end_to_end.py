@@ -2,7 +2,7 @@ from src.triage.agent import TriageAgent
 from src.models import TriageResult
 
 
-def main():
+def test_end_to_end_triage():
     print("Testing end-to-end triage scenarios...\n")
 
     agent = TriageAgent()
@@ -49,7 +49,9 @@ def main():
     assert isinstance(result, TriageResult)
     assert result.ticket_id == missing_account_ticket_id
 
-    print("✓ Missing-account ticket processed successfully")
+    print(
+        "✓ Missing-account ticket processed successfully"
+    )
 
     # Scenario 3: Invalid ticket
     invalid_ticket_id = "invalid-ticket-id"
@@ -60,13 +62,11 @@ def main():
             top_k=3,
         )
 
-        assert False, "Expected ValueError was not raised."
+        assert False, (
+            "Expected ValueError was not raised."
+        )
 
     except ValueError:
         print("✓ Invalid ticket handled correctly")
 
     print("\nEnd-to-end test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

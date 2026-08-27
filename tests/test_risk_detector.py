@@ -1,15 +1,16 @@
 from src.tam.risk_detector import RiskDetector
 
 
-def main():
+def test_risk_detector():
     print("Testing risk detector...\n")
 
     detector = RiskDetector()
 
-    # High-risk ticket
     high_risk_ticket = {
         "subject": "Security breach detected",
-        "description": "Unauthorized access was detected in our account.",
+        "description": (
+            "Unauthorized access was detected in our account."
+        ),
     }
 
     result = detector.assess(high_risk_ticket)
@@ -21,10 +22,11 @@ def main():
     print("✓ High-risk ticket detected")
     print(f"  Reasons: {result.risk_reasons}")
 
-    # Low-risk ticket
     low_risk_ticket = {
         "subject": "How can I update my profile?",
-        "description": "I would like to change my profile information.",
+        "description": (
+            "I would like to change my profile information."
+        ),
     }
 
     result = detector.assess(low_risk_ticket)
@@ -35,7 +37,6 @@ def main():
 
     print("✓ Low-risk ticket detected")
 
-    # Empty ticket
     result = detector.assess({})
 
     assert result.risk_level == "unknown"
@@ -43,7 +44,3 @@ def main():
     print("✓ Empty ticket handled correctly")
 
     print("\nRisk detector test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

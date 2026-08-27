@@ -5,7 +5,7 @@ from src.triage.prompts import (
 )
 
 
-def main():
+def test_triage_prompt():
     print("Testing triage prompt...\n")
 
     agent = TriageAgent()
@@ -32,7 +32,3 @@ def main():
     print("✓ Triage prompt generated")
 
     print("\nTriage prompt test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

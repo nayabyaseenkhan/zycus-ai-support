@@ -1,7 +1,7 @@
 from src.tam.account_service import AccountService
 
 
-def main():
+def test_account_service():
     print("Testing account service...\n")
 
     service = AccountService()
@@ -24,14 +24,18 @@ def main():
     print("✓ get_ticket() passed")
 
     # Test missing ticket
-    missing_ticket = service.get_ticket("non-existent-ticket")
+    missing_ticket = service.get_ticket(
+        "non-existent-ticket"
+    )
 
     assert missing_ticket is None
 
     print("✓ Missing ticket handled correctly")
 
     # Test customer context
-    context = service.get_customer_context(ticket_id)
+    context = service.get_customer_context(
+        ticket_id
+    )
 
     assert context["ticket"] is not None
 
@@ -47,7 +51,3 @@ def main():
         print("✓ Missing account handled gracefully")
 
     print("\nAccount service test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()

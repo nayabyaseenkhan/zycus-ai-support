@@ -1,7 +1,7 @@
 from src.models import TriageResult
 
 
-def main():
+def test_triage_result_model():
     print("Testing triage result model...")
 
     result = TriageResult(
@@ -89,7 +89,3 @@ def main():
 
     print()
     print("Triage result model test passed successfully!")
-
-
-if __name__ == "__main__":
-    main()
